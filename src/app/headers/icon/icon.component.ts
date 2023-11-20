@@ -5,8 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.css'],
 })
-export class IconComponent {
-  check() {
-    console.log('HELLO');
-  }
-}
+export class IconComponent {}

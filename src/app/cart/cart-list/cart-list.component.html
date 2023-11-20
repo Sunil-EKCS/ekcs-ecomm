@@ -1,9 +1,10 @@
 <main class="products-container">
     <div class="cart">
         <section>
-            <app-cart-item *ngFor="let product of cartDB" [cartData]="product"></app-cart-item>
+            <app-cart-item *ngFor="let product of cartDB" [cartData]="product" (deleteCartItem)="removeCart($event)"
+                (setAddQty)="fAddQty($event)" (setSubQty)="fSubQty($event)"></app-cart-item>
         </section>
-        <app-cart-total></app-cart-total>
+        <app-cart-total [total]="subTotal()"></app-cart-total>
 
 
     </div>

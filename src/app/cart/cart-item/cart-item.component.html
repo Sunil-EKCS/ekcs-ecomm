@@ -7,9 +7,9 @@
         <h3>{{cartData.price| currency:"USD"}}</h3>
 
         <app-quantity [availableQuantity]="cartData.availableQuantity" [purchaseQuantity]="cartData.purchaseQuantity"
-            [id]="cartData.id"></app-quantity>
+            [id]="cartData.id" (addClick)="addQty()" (subClick)="subQty()"></app-quantity>
 
-        <app-cart-footer></app-cart-footer>
+        <app-cart-footer (removeCartItem)="removeCart()"></app-cart-footer>
 
 
     </div>

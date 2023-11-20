@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,15 +12,26 @@ export class QuantityComponent {
   @Input() availableQuantity!: number;
   @Input() purchaseQuantity!: number;
 
+  @Output() addClick = new EventEmitter();
+  @Output() subClick = new EventEmitter();
+
   add(): void {
-    if (this.purchaseQuantity < this.availableQuantity) {
-      this.purchaseQuantity += 1;
-    }
+    this.addClick.emit();
   }
 
   sub(): void {
-    if (this.purchaseQuantity > 1) {
-      this.purchaseQuantity -= 1;
-    }
+    this.subClick.emit();
   }
+
+  // add(): void {
+  //   if (this.purchaseQuantity < this.availableQuantity) {
+  //     this.purchaseQuantity += 1;
+  //   }
+  // }
+
+  // sub(): void {
+  //   if (this.purchaseQuantity > 1) {
+  //     this.purchaseQuantity -= 1;
+  //   }
+  // }
 }

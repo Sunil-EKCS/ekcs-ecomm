@@ -3,7 +3,8 @@
     <app-card-main [imageUrl]="product.image"></app-card-main>
 
     <app-card-footer [showQuantity]="product.isInCart" [availableQuantity]="product.availableQuantity"
-        [purchaseQuantity]="product.purchaseQuantity" (cartProduct)="pushToCart()"></app-card-footer>
+        [purchaseQuantity]="product.purchaseQuantity" (cartProduct)="pushToCart()" (addProductQty)="pushQty()"
+        (subProductQty)="pullQty()"></app-card-footer>
 
 
 

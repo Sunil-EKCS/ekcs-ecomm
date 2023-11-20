@@ -1,5 +1,5 @@
 <div class="footer">
    <app-button (btnClick)="addToCart()" *ngIf="!showQuantity" [name]="'Add To Cart'"></app-button>
-   <app-quantity [availableQuantity]="availableQuantity" [purchaseQuantity]="purchaseQuantity"
-      *ngIf="showQuantity"></app-quantity>
+   <app-quantity (addClick)="addQty()" (subClick)="subQty()" [availableQuantity]="availableQuantity"
+      [purchaseQuantity]="purchaseQuantity" *ngIf="showQuantity"></app-quantity>
 </div>

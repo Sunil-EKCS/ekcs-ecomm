@@ -10,8 +10,16 @@ export class CardFooterComponent {
   @Input() purchaseQuantity!: number;
 
   @Output() cartProduct = new EventEmitter();
+  @Output() addProductQty = new EventEmitter();
+  @Output() subProductQty = new EventEmitter();
 
   addToCart() {
     this.cartProduct.emit();
+  }
+  addQty() {
+    this.addProductQty.emit();
+  }
+  subQty() {
+    this.subProductQty.emit();
   }
 }

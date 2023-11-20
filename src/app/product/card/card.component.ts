@@ -9,12 +9,18 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CardComponent {
   // DI
-  #productSerive = inject(ProductService);
+  #productService = inject(ProductService);
 
   // Input / Ouput
   @Input() product!: Product;
 
   pushToCart(): void {
-    this.#productSerive.addToCart(this.product.id);
+    this.#productService.addToCart(this.product.id);
+  }
+  pushQty(): void {
+    this.#productService.changeAddQty(this.product.id);
+  }
+  pullQty(): void {
+    this.#productService.changeSubQty(this.product.id);
   }
 }

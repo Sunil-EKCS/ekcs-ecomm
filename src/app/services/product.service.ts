@@ -9,6 +9,7 @@ export class ProductService {
   // cartCount = signal<number>(0)
 
   cartCount = new BehaviorSubject<number>(0);
+  count = 0;
 
   #productDB: Product[] = [
     {
@@ -221,9 +222,6 @@ export class ProductService {
   }
 
   addToCart(id: number) {
-    // Behaviour subject
-    this.cartCount.next(1);
-
     // signals
 
     // this.cartCount.update(value => value+=1)
@@ -235,6 +233,9 @@ export class ProductService {
     for (const product of this.#productDB) {
       if (product.id == id) {
         product.isInCart = true;
+        this.count += 1;
+        // Behaviour subject
+        this.cartCount.next(this.count);
         break;
       }
     }
@@ -247,8 +248,31 @@ export class ProductService {
         cartData.push(product);
       }
     }
-    console.log(cartData);
     return cartData;
   }
-  changeQty() {}
+
+  changeAddQty(id: number) {
+    for (let product of this.#productDB) {
+      if (
+        product.id == id &&
+        product.purchaseQuantity < product.availableQuantity
+      ) {
+        product.purchaseQuantity += 1;
+      }
+    }
+  }
+
+  changeSubQty(id: number) {
+    for (let product of this.#productDB) {
+      if (product.id == id && product.purchaseQuantity >= 1) {
+        product.purchaseQuantity -= 1;
+        if (product.purchaseQuantity < 1) {
+          product.isInCart = false;
+          product.purchaseQuantity += 1;
+          this.count -= 1;
+          this.cartCount.next(this.count);
+        }
+      }
+    }
+  }
 }
